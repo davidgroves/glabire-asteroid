@@ -13,6 +13,11 @@ class CircleShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
 
+        # The "image" attribute is required by pygame Sprites, even if you're not using it.
+        self.image = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)  # Create a transparent surface
+        self.rect = self.image.get_rect()  # Define the "rect" attribute
+        self.rect.center = (x, y)  # Position the rect at the initial position
+
     def draw(self, screen):
         # sub-classes must override
         pass
