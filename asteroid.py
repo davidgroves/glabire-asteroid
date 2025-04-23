@@ -20,15 +20,22 @@ class Asteroid(CircleShape):
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
         else:
+            # random generator
             rand_angle = random.uniform(20, 50)
 
+            # settings the velocity of the new asteroids
             new_velocity1 = self.velocity.rotate(rand_angle)
             new_velocity2 = self.velocity.rotate(-rand_angle)
 
+            # new radius to determine the size of the new asteroids
             new_radius = old_radius - ASTEROID_MIN_RADIUS
 
-            new_asteroid1 = Asteroid(self.position.x, self.position.y, new_radius)
+            # First new asteroid
+            new_asteroid1 = Asteroid(self.position[0], self.position[1], new_radius)
             new_asteroid1.velocity = new_velocity1 * 1.2
 
-            new_asteroid2 = Asteroid(self.position.x, self.position.y, new_radius)
+            # Second new asteroid
+            new_asteroid2 = Asteroid(self.position[0], self.position[1], new_radius)
             new_asteroid2.velocity = new_velocity2 * 1.2
+
+            return [new_asteroid1, new_asteroid2]
